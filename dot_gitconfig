@@ -1,0 +1,6 @@
+[user]
+	email = 6630430+boyeborg@users.noreply.github.com
+	name = Boye Borg Nygård
+[alias]
+	cleanup = "!git fetch --all --prune; git branch --list --format '%(refname:short)' | grep -vE $(git branch -r | grep -v 'HEAD' | sed 's#origin/##' | xargs |sed 's# #|#g') | sed -e 's/\"/\"\\\"\"/g' -e 's/.*/\"&\"/' | xargs git branch -D"
+
