@@ -5,6 +5,6 @@
 [alias]
 	cleanup = "!git fetch --all --prune; git branch --list --format '%(refname:short)' | grep -vE $(git branch -r | grep -v 'HEAD' | sed 's#origin/##' | xargs |sed 's# #|#g') | sed -e 's/\"/\"\\\"\"/g' -e 's/.*/\"&\"/' | xargs git branch -D"
 
-[includeIf "gitdir:~/dev/omny/"]
+[includeIf "hasconfig:remote.*.url:git@gitlab.com:omnysecurity/**"]
 	path = ~/.gitconfig-omny
 
