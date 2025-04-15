@@ -1,10 +1,20 @@
 [user]
-	email = 6630430+boyeborg@users.noreply.github.com
-	name = Boye Borg Nygård
+	email = 6630430+boyeln@users.noreply.github.com
+	name = Boye Lillejord-Nygård
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILrRM9HMtD8FuGJzfdasZwvKBnseetjVhr4mF2djD5SS
 
 [alias]
 	cleanup = "!git fetch --all --prune; git branch --list --format '%(refname:short)' | grep -vE $(git branch -r | grep -v 'HEAD' | sed 's#origin/##' | xargs |sed 's# #|#g') | sed -e 's/\"/\"\\\"\"/g' -e 's/.*/\"&\"/' | xargs git branch -D"
 
-[includeIf "hasconfig:remote.*.url:git@gitlab.com:omnysecurity/**"]
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+ 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+ 	gpgsign = true
+
+[includeIf "hasconfig:remote.*.url:git@github.com:omnysecurity/**"]
 	path = ~/.gitconfig-omny
 
