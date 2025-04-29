@@ -1,5 +1,5 @@
 
-theme = "github_light"
+theme = "github_dark"
 
 [editor]
 line-number = "relative"
