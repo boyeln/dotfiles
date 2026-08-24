@@ -1,0 +1,11 @@
+theme = Catppuccin Mocha
+font-family = "MonoLisa"
+font-size = 19
+mouse-hide-while-typing = true
+window-decoration = true
+background-opacity = 1
+background-blur-radius = 30
+keybind = clear
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = shift+enter=text:\x1b\r
