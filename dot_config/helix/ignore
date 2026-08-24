@@ -6,8 +6,8 @@ vite.config.ts.timestamp-*
 # Build artifacts
 .output/
 .vercel/
-.svelte-kit/
 .svelte-kit-test/
+.svelte-kit/
 .turbo/
 build/
 dist/

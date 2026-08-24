@@ -13,8 +13,28 @@
  	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [commit]
- 	gpgsign = true
+	gpgsign = true
+
+[include]
+	path = ~/.config/delta/themes/catppuccin/catppuccin.gitconfig
 
 [includeIf "hasconfig:remote.*.url:git@github.com:omnysecurity/**"]
 	path = ~/.gitconfig-omny
 
+[pull]
+	rebase = false
+	ff = true
+	
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+	features = catppuccin-macchiato
+
+[merge]
+	conflictStyle = zdiff3
