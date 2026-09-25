@@ -61,7 +61,32 @@ ask() {
 alias cc="claude --allow-dangerously-skip-permissions"
 alias ccp="CLAUDE_CONFIG_DIR=/Users/bln/.claude-personal claude --allow-dangerously-skip-permissions"
 
-eval "$(zellij setup --generate-auto-start zsh)"
+# ralph loop: rerun instructions until claude reports nothing left to do
+ralph() {
+  if [ -z "$1" ]; then
+    echo "Usage: ralph \"<instructions>\" [iterations]" >&2
+    return 1
+  fi
+
+  local prompt="$1"$'\n\n'"IMPORTANT: If there's nothing to do, reply '<promise>COMPLETE</promise>'"
+  local iterations="${2:-10}"
+  local i result
+
+  for ((i = 1; i <= iterations; i++)); do
+    echo "--- ralph $i/$iterations ---"
+    result=$(claude --model opus --dangerously-skip-permissions -p "$prompt") || return $?
+    echo "$result"
+    if [[ "$result" == *"<promise>COMPLETE</promise>"* ]]; then
+      echo "Done after $i iterations."
+      return 0
+    fi
+  done
+
+  echo "Stopped after $iterations iterations without completing." >&2
+  return 1
+}
+
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then eval "$(zellij setup --generate-auto-start zsh)"; fi
 
 eval "$(starship init zsh)"
 
